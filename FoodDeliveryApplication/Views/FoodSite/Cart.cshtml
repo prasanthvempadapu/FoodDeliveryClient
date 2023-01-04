@@ -51,7 +51,7 @@ else
                 Total_Price = Total_Price + @obj.Price * obj.Quantity;
 
                 {
-                   @* SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+                   @* SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
                     SqlCommand cmd = new SqlCommand(String.Format("insert into ConfirmOrder(UserName,FoodItem,Price,Quantity,RestaurantId) values('{0}','{1}','{2}','{3}','{4}')",@obj.UserName, @obj.FoodItem, @obj.Price,@obj.Quantity,@obj.RestaurantId), conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();

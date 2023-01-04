@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Food Delivery Application(Zomato)\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
+    "E:\\FoodDeliveryClientWithAoi\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
   },
   "projects": {
-    "F:\\Food Delivery Application(Zomato)\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
+    "E:\\FoodDeliveryClientWithAoi\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Food Delivery Application(Zomato)\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "projectUniqueName": "E:\\FoodDeliveryClientWithAoi\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
         "projectName": "FoodDeliveryApplication",
-        "projectPath": "F:\\Food Delivery Application(Zomato)\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
-        "packagesPath": "C:\\Users\\vempadapu_prasanth\\.nuget\\packages\\",
-        "outputPath": "F:\\Food Delivery Application(Zomato)\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
+        "projectPath": "E:\\FoodDeliveryClientWithAoi\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "packagesPath": "C:\\Users\\SURYA\\.nuget\\packages\\",
+        "outputPath": "E:\\FoodDeliveryClientWithAoi\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vempadapu_prasanth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SURYA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
               "version": "[5.2.9, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.14.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -79,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

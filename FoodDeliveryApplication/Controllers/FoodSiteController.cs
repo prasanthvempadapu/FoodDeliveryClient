@@ -23,7 +23,7 @@ namespace FoodDeliveryApplication.Controllers
         {
             _logger = logger;
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand("select * from Users", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -56,7 +56,7 @@ namespace FoodDeliveryApplication.Controllers
                 return View();
             }
 
-            /*SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            /*SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("insert into Users values('{0}','{1}','{2}')", signup.UserName, signup.Email, signup.Password), conn);
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -67,7 +67,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient = new HttpClient();
 
             JsonContent content = JsonContent.Create(signup);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:44307/api/Food/SignUp", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/SignUp", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -129,7 +129,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient = new HttpClient();
 
             JsonContent content = JsonContent.Create(login);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:44307/api/NewAuthentication/login", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/NewAuthentication/login", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -181,7 +181,7 @@ namespace FoodDeliveryApplication.Controllers
             var t = HttpContext.Session.GetString("Tokens");
             Console.WriteLine("Tokens "+t);
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997; ");
             SqlCommand cmd = new SqlCommand("select * from Restaurants", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -208,7 +208,7 @@ namespace FoodDeliveryApplication.Controllers
             });
 
             
-            using(var validationResponce = await httpClient.PostAsync("https://localhost:44307/api/NewAuthentication/validate", content))
+            using(var validationResponce = await httpClient.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/NewAuthentication/validate", content))
             {
                 if(validationResponce.StatusCode== System.Net.HttpStatusCode.BadRequest)
                 {
@@ -224,7 +224,7 @@ namespace FoodDeliveryApplication.Controllers
             httpClient.DefaultRequestHeaders.Authorization =
                 new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 
-            using (var apiResponce = await httpClient.GetAsync("https://localhost:44307/api/Food/GetAllRestaurants"))
+            using (var apiResponce = await httpClient.GetAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/GetAllRestaurants"))
             {
 
                 if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -254,7 +254,7 @@ namespace FoodDeliveryApplication.Controllers
             }
             Console.WriteLine("ResId" + Id);
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select *  from Food where Restaurant_Id={0}", Id), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -289,7 +289,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<Menu> res = new List<Menu>();
             HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:44307/api/Food/GetRestaurantMenuById/" + Id);
+            var apiResponce = await httpClient.GetAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/GetRestaurantMenuById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -339,7 +339,7 @@ namespace FoodDeliveryApplication.Controllers
             _logger.LogInformation("Item:{0} added to cart by the user:{1} of Quantity:{2}", Food_Item, HttpContext.Session.GetString("UserName"), Quantity);
 
 
-            /* SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            /* SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
              SqlCommand cmd = new SqlCommand(String.Format("insert into AddItemToCart values('{0}','{1}','{2}','{3}','{4}')", HttpContext.Session.GetString("UserName"), Food_Item, Quantity, Restaurant_Id, Price), conn);
              conn.Open();
              cmd.ExecuteNonQuery();
@@ -353,7 +353,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient = new HttpClient();
 
             JsonContent content = JsonContent.Create(cart);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:44307/api/Food/AddToCart", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/AddToCart", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -390,7 +390,7 @@ namespace FoodDeliveryApplication.Controllers
             }
             Console.WriteLine("Idddd" + Id);
 
-            /*SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            /*SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where ItemNo = '{0}'", Id), conn);
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -401,7 +401,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.DeleteAsync("https://localhost:44307/api/Food/DeleteCartItemById/" + Id);
+            var apiResponce = await httpClient.DeleteAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/DeleteCartItemById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -425,7 +425,7 @@ namespace FoodDeliveryApplication.Controllers
                 return RedirectToAction("Login");
                 //UserName = "Raksha";
             }/*
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select A.FoodItem, A.Quantity,A.ItemNo, F.Food_Image,F.Price,F.Id,F.Restaurant_Id from AddItemToCart A inner join Food F on F.Food_Item = A.FoodItem where A.UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -447,7 +447,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<Cart> res = new List<Cart>();
             HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:44307/api/Food/GetCartByUserName?UserName=" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/GetCartByUserName?UserName=" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -486,7 +486,7 @@ namespace FoodDeliveryApplication.Controllers
 
             Console.WriteLine(OrderTime);
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             /*SqlCommand cmd = new SqlCommand(String.Format(
                 "insert into Orders values('{0}','{1}','{2}','{3}','{4}')",
                 inVoiceNo,
@@ -518,7 +518,7 @@ namespace FoodDeliveryApplication.Controllers
 
             JsonContent content = JsonContent.Create(order);
             Console.WriteLine(content.Value);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:44307/api/Food/Orders", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/Orders", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -535,7 +535,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
 
-            SqlConnection conn1 = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand sqlcmd = new SqlCommand(String.Format(
                 "select * from AddItemToCart where UserName = '{0}'",
                 HttpContext.Session.GetString("UserName")), conn);
@@ -556,7 +556,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient1 = new HttpClient();
 
             JsonContent content1 = JsonContent.Create(orderList);
-            using (var apiRespoce = await httpClient1.PostAsync("https://localhost:44307/api/Food/OrderDetails", content1))
+            using (var apiRespoce = await httpClient1.PostAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/OrderDetails", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -604,7 +604,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             HttpClient httpClient2 = new HttpClient();
-            var apiResponce = await httpClient.DeleteAsync("https://localhost:44307/api/Food/DeleteCartItemsByUserName/" + UserName);
+            var apiResponce = await httpClient.DeleteAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/DeleteCartItemsByUserName/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -629,7 +629,7 @@ namespace FoodDeliveryApplication.Controllers
             {
                 return RedirectToAction("Login");
             }
-            SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select * from ConfirmOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -676,7 +676,7 @@ namespace FoodDeliveryApplication.Controllers
             }
 
             Console.WriteLine("Id : " + Id);
-            /*SqlConnection conn = new SqlConnection("Data Source = PSL-FL527L3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            /*SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
 
             ViewBag.ObjectPassed = "True";
             var OrderList = new List<Order>();
@@ -752,7 +752,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<OrderDetails> res = new List<OrderDetails>();
             HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:44307/api/Food/OrderStatus/" + Id + "/" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/OrderStatus/" + Id + "/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -794,7 +794,7 @@ namespace FoodDeliveryApplication.Controllers
             string FoodItem = col["SearchedfoodItem"];
             List<Menu> res = new List<Menu>();
             HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:44307/api/Food/SearchMenuByName/" + FoodItem);
+            var apiResponce = await httpClient.GetAsync("http://ip172-18-0-16-ceqldj60qau0009nlva0-8080.direct.labs.play-with-docker.com/api/Food/SearchMenuByName/" + FoodItem);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
